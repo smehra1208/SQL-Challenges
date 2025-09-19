@@ -25,4 +25,6 @@ SELECT P.patient_id, first_name, last_name
 JOIN admissions A
 	ON P.patient_id = A.patient_id
 WHERE A.diagnosis = 'Dementia'
+
+
 	
