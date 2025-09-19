@@ -107,7 +107,33 @@ SELECT first_name
 	FROM patients
 ORDER BY LENGTH(first_name), first_name;
 
+-- 17. Show the total amount of male patients and the total amount of female patients in the patients table.Display the two results in the same row.
+SELECT
+	SUM(CASE WHEN gender = 'M' then 1 ELSE 0 END) as male_count,
+	SUM(CASE WHEN gender = 'F' THEN 1 ELSE 0 END) AS female_count
+FROM patients;
 
+-- 18. Show first and last name, allergies from patients which have allergies to either 'Penicillin' or 'Morphine'. Show results ordered ascending by allergies then by first_name then by last_name.
+SELECT first_name, last_name, allergies
+	FROM patients
+WHERE allergies in ('Penicillin' , 'Morphine')
+ORDER BY allergies, first_name, last_name
+
+-- Alternate Solution 
+SELECT first_name, last_name, allergies
+	FROM patients
+	WHERE allergies = 'Penicillin' OR 
+		allergies = 'Morphine'
+ORDER BY allergies, first_name, last_name;
+
+-- 19. Show the city and the total number of patients in the city. Order from most to least patients and then by city name ascending.
+SELECT DISTINCT city, COUNT(*) AS total_patients
+	FROM patients
+group by city
+ORDER BY total_patients DESC, city ASC;
+
+
+                    
 
 
 
